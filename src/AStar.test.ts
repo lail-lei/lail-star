@@ -118,7 +118,6 @@ describe('simple test', () => {
         const target = new PathNode(0, 49);
         const { minCost, path } = aStar.search(start, target, true);
         const coords = path?.map((pathNode) => pathNode.id)
-        console.log(coords?.reverse(), minCost);
 
     });
 
@@ -127,8 +126,6 @@ describe('simple test', () => {
         const target = new PathNode(25, 0);
         const { minCost, path } = aStar.search(start, target, true);
         const coords = path?.map((pathNode) => pathNode.id)
-        console.log(coords?.reverse(), minCost);
-
     });
 
 
@@ -137,7 +134,6 @@ describe('simple test', () => {
         const target = new PathNode(25, 49);
         const { minCost, path } = aStar.search(start, target, true);
         const coords = path?.map((pathNode) => pathNode.id)
-        console.log(coords?.reverse(), minCost);
 
     });
 
@@ -158,6 +154,6 @@ describe('harder tests', () => {
 
     });
 
-    todo('returns error for path that is not routable')
+    it.todo('returns error for path that is not routable')
 
 })

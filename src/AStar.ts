@@ -72,13 +72,10 @@ export class AStar {
 
             const children = current.generateChildren(this.floorplan);
 
-            for (let i = 0; i < children.length; i++) {
-                const child = children[i];
+            for (let child of children) {
 
                 if (child === null) continue;
-
                 child.evaluate(this.target);
-
 
                 // if this node has been encountered before and is closed 
                 if (this.closed.has(child.id)) {
@@ -89,10 +86,8 @@ export class AStar {
                         this.closed.delete(child.id);
                         this.opened.push(child);
                     }
-
                     continue;
                 }
-
 
                 this.createSearchableQueue();
                 const indexInOpenQueue = this.findInOpenQueue(child.id);

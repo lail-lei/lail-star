@@ -29,7 +29,7 @@ export class PathNode {
         return (Math.abs(this.x - target.x) + Math.abs(this.y - target.y));
     }
 
-    generateChildren = (floorplan: Matrix): Array<PathNode | null> => {
+    generateChildren = (floorplan: Matrix): (PathNode | null)[] => {
 
         const numColumns = floorplan[0].length;
         const numRows = floorplan.length;
