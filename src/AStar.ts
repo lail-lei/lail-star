@@ -72,7 +72,7 @@ export class AStar {
 
             const children = current.generateChildren(this.floorplan);
 
-            for (let child of children) {
+            for (const child of children) {
 
                 if (child === null) continue;
                 child.evaluate(this.target);
