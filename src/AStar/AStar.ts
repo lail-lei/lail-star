@@ -1,5 +1,4 @@
 import { MinPriorityQueue, IGetCompareValue } from '@datastructures-js/priority-queue';
-
 import { PathNode } from '../PathNode/PathNode';
 
 export class AStar {
