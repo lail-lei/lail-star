@@ -94,6 +94,8 @@ export class AStar {
         this.selectCheaperOpenNode(child, indexInOpenQueue);
         this.resetSearchableQueue();
       }
+
+      this.closed.set(current.id, current);
     }
 
     return { minCost: Infinity, error: 'unable to reach target node from given start' };
