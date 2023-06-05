@@ -1,3 +1,5 @@
+import { Matrix } from "../types";
+
 export class PathNode {
   x: number;
   y: number;

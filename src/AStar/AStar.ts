@@ -1,5 +1,13 @@
+import { Matrix } from "../types";
+
 import { MinPriorityQueue, IGetCompareValue } from '@datastructures-js/priority-queue';
-import { PathNode } from '../PathNode/PathNode';
+import { PathNode } from '../PathNode';
+
+export interface AStarSearchResult {
+  minCost: number;
+  path?: PathNode[];
+  error?: string;
+}
 
 export class AStar {
   floorplan: Matrix;
