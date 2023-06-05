@@ -1,9 +1,9 @@
 {
-  "name": "lail-star",
+  "name": "lail-astar",
   "version": "1.0.1",
   "description": "typescript implementation of a-star algorithm",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "types": "lib/types.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
