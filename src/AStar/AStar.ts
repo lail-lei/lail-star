@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types';
 
 import { MinPriorityQueue, IGetCompareValue } from '@datastructures-js/priority-queue';
 import { PathNode } from '../PathNode';

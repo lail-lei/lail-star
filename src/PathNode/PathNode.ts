@@ -1,4 +1,4 @@
-import { Matrix } from "../types";
+import { Matrix } from '../types';
 
 export class PathNode {
   x: number;
