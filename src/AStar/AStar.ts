@@ -29,7 +29,7 @@ export class AStar {
   findInOpenQueue = (nodeId: string): number => {
     if (this.searchableOpenQueue === undefined)
       throw new Error('must convert queue to array before searching for node');
-    return this.searchableOpenQueue.findIndex((node: PathNode) => node.id === nodeId);
+    return this.searchableOpenQueue.findIndex((node: PathNode) => node.gridId === nodeId);
   };
   selectCheaperOpenNode = (child: PathNode, index: number) => {
     if (this.searchableOpenQueue === undefined)
@@ -37,7 +37,7 @@ export class AStar {
     const prev = this.searchableOpenQueue[index];
     if (prev.cost > child.cost) {
       this.opened = MinPriorityQueue.fromArray(
-        this.searchableOpenQueue.filter((node: PathNode) => node.id !== prev.id),
+        this.searchableOpenQueue.filter((node: PathNode) => node.gridId !== prev.gridId),
       );
       this.opened.push(child);
     }
@@ -68,7 +68,7 @@ export class AStar {
     while (!this.opened.isEmpty()) {
       current = this.opened.pop();
 
-      if (current.id === this.target.id) {
+      if (current.gridId === this.target.gridId) {
         const result: AStarSearchResult = { minCost: current.cost };
         if (reconstructPath) result.path = this.reconstructPath(current);
         return result;
@@ -81,18 +81,18 @@ export class AStar {
         child.evaluate(this.target);
 
         // if this node has been encountered before and is closed
-        if (this.closed.has(child.id)) {
-          const prev = this.closed.get(child.id);
+        if (this.closed.has(child.gridId)) {
+          const prev = this.closed.get(child.gridId);
 
           if (prev && prev.cost > child.cost) {
-            this.closed.delete(child.id);
+            this.closed.delete(child.gridId);
             this.opened.push(child);
           }
           continue;
         }
 
         this.createSearchableQueue();
-        const indexInOpenQueue = this.findInOpenQueue(child.id);
+        const indexInOpenQueue = this.findInOpenQueue(child.gridId);
         if (indexInOpenQueue === -1) {
           this.opened.push(child);
           this.resetSearchableQueue();
@@ -103,7 +103,7 @@ export class AStar {
         this.resetSearchableQueue();
       }
 
-      this.closed.set(current.id, current);
+      this.closed.set(current.gridId, current);
     }
 
     return { minCost: Infinity, error: 'unable to reach target node from given start' };

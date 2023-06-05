@@ -4,15 +4,17 @@ export class PathNode {
   x: number;
   y: number;
   parent: PathNode | null;
-  id: string;
+  gridId: string;
   cost: number;
+  uid?: string;
 
-  constructor(x: number, y: number, parent?: PathNode) {
+  constructor(x: number, y: number, parent?: PathNode, uid?: string) {
     this.x = x;
     this.y = y;
-    this.id = `${x}_${y}`;
+    this.gridId = `${x}_${y}`;
     this.parent = parent || null;
     this.cost = Infinity;
+    this.uid = uid;
   }
 
   evaluate = (target: PathNode) => {
