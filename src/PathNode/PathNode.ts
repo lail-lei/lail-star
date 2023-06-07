@@ -34,7 +34,7 @@ export class PathNode {
   };
 
   generateChildren = (floorplan: Matrix): (PathNode | null)[] => {
-    // we want to be able to walk up to a wall 
+    // we want to be able to walk up to a wall
     // but not go through the wall. so if this is a wall space
     // return an empty array
     if (floorplan[this.y][this.x] === 1) return [];

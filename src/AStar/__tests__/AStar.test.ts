@@ -149,20 +149,19 @@ describe('harder tests', () => {
     const coords = path?.map((pathNode) => pathNode.gridId).reverse();
   });
 
-
   it('routes to wall 11,2 from 0,0', () => {
     const start = new PathNode(0, 0);
     const target = new PathNode(11, 2);
     const { minCost, path } = aStar.search(start, target, true);
     const coords = path?.map((pathNode) => pathNode.gridId).reverse();
-  })
+  });
 
   it('routes around wall 12,2 from 0,0', () => {
     const start = new PathNode(0, 0);
     const target = new PathNode(12, 2);
     const { minCost, path } = aStar.search(start, target, true);
     const coords = path?.map((pathNode) => pathNode.gridId).reverse();
-  })
+  });
 
   it('returns error for path that is not routable', () => {
     const start = new PathNode(0, 0);
