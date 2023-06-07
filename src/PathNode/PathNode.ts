@@ -34,6 +34,11 @@ export class PathNode {
   };
 
   generateChildren = (floorplan: Matrix): (PathNode | null)[] => {
+    // we want to be able to walk up to a wall 
+    // but not go through the wall. so if this is a wall space
+    // return an empty array
+    if (floorplan[this.y][this.x] === 1) return [];
+
     const numColumns = floorplan[0].length;
     const numRows = floorplan.length;
 
@@ -42,8 +47,6 @@ export class PathNode {
       const yOutOfBounds = y < 0 || y >= numRows;
 
       if (xOutOfBounds || yOutOfBounds) return null;
-
-      if (floorplan[y][x] === 1) return null;
 
       return new PathNode(x, y, this);
     };
