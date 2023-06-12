@@ -54,7 +54,12 @@ export class AStar {
   };
 
   // find the distance
-  search = (start: PathNode, target: PathNode, reconstructPath: boolean, distanceHeuristic?: DistanceHeuristic): AStarSearchResult => {
+  search = (
+    start: PathNode,
+    target: PathNode,
+    reconstructPath: boolean,
+    distanceHeuristic?: DistanceHeuristic,
+  ): AStarSearchResult => {
     this.start = start;
     this.target = target;
     this.opened = new MinPriorityQueue<PathNode>(this.getNodeCost);

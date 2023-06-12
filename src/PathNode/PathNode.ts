@@ -26,7 +26,10 @@ export class PathNode {
     // cost from start to parent node
     const g = this.parent?.cost ? this.parent.cost : 0;
     // heuristic
-    const h = distanceHeuristic && distanceHeuristic === DistanceHeuristic.EUCLIDEAN ? this.calculateEuclideanDistance(target) : this.calculateManhattenDistance(target);
+    const h =
+      distanceHeuristic && distanceHeuristic === DistanceHeuristic.EUCLIDEAN
+        ? this.calculateEuclideanDistance(target)
+        : this.calculateManhattenDistance(target);
     this.cost = g + h;
   };
 
