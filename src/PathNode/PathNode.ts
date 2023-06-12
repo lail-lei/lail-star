@@ -1,5 +1,10 @@
 import { Matrix } from '../types';
 
+export enum DistanceHeuristic {
+  EUCLIDEAN = 'EUCLIDEAN',
+  MANHATTAN = 'MANHATTAN',
+}
+
 export class PathNode {
   x: number;
   y: number;
@@ -17,11 +22,11 @@ export class PathNode {
     this.uid = uid;
   }
 
-  evaluate = (target: PathNode) => {
+  evaluate = (target: PathNode, distanceHeuristic?: DistanceHeuristic) => {
     // cost from start to parent node
     const g = this.parent?.cost ? this.parent.cost : 0;
     // heuristic
-    const h = this.calculateManhattenDistance(target);
+    const h = distanceHeuristic && distanceHeuristic === DistanceHeuristic.EUCLIDEAN ? this.calculateEuclideanDistance(target) : this.calculateManhattenDistance(target);
     this.cost = g + h;
   };
 

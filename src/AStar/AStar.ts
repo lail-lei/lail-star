@@ -1,7 +1,7 @@
 import { Matrix } from '../types';
 
 import { MinPriorityQueue, IGetCompareValue } from '@datastructures-js/priority-queue';
-import { PathNode } from '../PathNode';
+import { DistanceHeuristic, PathNode } from '../PathNode';
 
 export interface AStarSearchResult {
   minCost: number;
@@ -54,12 +54,12 @@ export class AStar {
   };
 
   // find the distance
-  search = (start: PathNode, target: PathNode, reconstructPath: boolean): AStarSearchResult => {
+  search = (start: PathNode, target: PathNode, reconstructPath: boolean, distanceHeuristic?: DistanceHeuristic): AStarSearchResult => {
     this.start = start;
     this.target = target;
     this.opened = new MinPriorityQueue<PathNode>(this.getNodeCost);
     this.closed = new Map();
-    this.start.evaluate(this.target);
+    this.start.evaluate(this.target, distanceHeuristic);
 
     this.opened.push(this.start);
 
@@ -78,7 +78,7 @@ export class AStar {
 
       for (const child of children) {
         if (child === null) continue;
-        child.evaluate(this.target);
+        child.evaluate(this.target, distanceHeuristic);
 
         // if this node has been encountered before and is closed
         if (this.closed.has(child.gridId)) {
