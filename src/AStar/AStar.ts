@@ -50,7 +50,7 @@ export class AStar {
       path.push(ptr);
       ptr = ptr.parent;
     }
-    return path;
+    return path.reverse();
   };
 
   // find the distance
